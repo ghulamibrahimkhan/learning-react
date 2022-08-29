@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 export default function TextForm(props) {
     const [text, setText] = useState("")
+
     const convertUpperCase = () => {
         let upperCase = text.toUpperCase()
         setText(upperCase)
@@ -12,11 +13,11 @@ export default function TextForm(props) {
         setText(lowerCase)
         props.showAlert("Converterd to lower case", "success")
     }
-    const capitalize = () =>{
+    const capitalize = () => {
         let capitalize = [];
         let lowerCase = text.toLowerCase();
         lowerCase = lowerCase.split(" ")
-        for(let i= 0; i < lowerCase.length; i++){
+        for (let i = 0; i < lowerCase.length; i++) {
             capitalize.push(lowerCase[i].charAt(0).toUpperCase() + lowerCase[i].slice(1))
         }
         capitalize = capitalize.join(" ")
@@ -26,10 +27,6 @@ export default function TextForm(props) {
     const clearText = () => {
         setText("")
         props.showAlert("Text cleared", "success")
-    }
-    const handelOnChange = (event) => {
-        console.log("Handel on change")
-        setText(event.target.value)
     }
     const handleCopy = () => {
         let text = document.getElementById("exampleFormControlTextarea1");
@@ -42,7 +39,10 @@ export default function TextForm(props) {
         setText(newText.join(" "))
         props.showAlert("Extra spaces cleared", "success")
     }
-
+    const handelOnChange = (event) => {
+        console.log("Handel on change")
+        setText(event.target.value)
+    }
     return (
         <>
             <div className='container mt-5'>
@@ -61,7 +61,7 @@ export default function TextForm(props) {
             </div>
             <div className="container my-4" style={{ color: props.mode === "dark" ? "white" : "#505050" }}>
                 <h2>Your Text summary</h2>
-                <p>Total words {text.split(" ").length} and {text.length} characters</p>
+                <p>Total words {text.split(" ").length-1} and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes To Read</p>
             </div>
             <section className="container" style={{ color: props.mode === "dark" ? "white" : "#505050" }}>
