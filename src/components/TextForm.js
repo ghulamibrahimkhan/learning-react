@@ -52,21 +52,21 @@ export default function TextForm(props) {
                     </label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" value={text} style={{ backgroundColor: props.mode === "dark" ? "#505050" : "white", color: props.mode === "dark" ? "white" : "#505050" }} onChange={handelOnChange} rows="11"></textarea>
                 </div>
-                <button className="btn btn-primary" onClick={convertUpperCase} >Convert to Upper Case</button>
-                <button className="btn btn-primary mx-2" onClick={convertLowerCase} >Convert to Lower Case</button>
-                <button className="btn btn-primary mx-2" onClick={capitalize} >Capitalize Word</button>
-                <button className="btn btn-primary" onClick={handleCopy}>Copy Text</button>
-                <button className="btn btn-primary mx-2" onClick={clearText}>Clear Text</button>
-                <button className="btn btn-primary" onClick={handleExtraSpace}>Clear Extra Space</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1"  onClick={convertUpperCase} >Convert to Upper Case</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1"  onClick={convertLowerCase} >Convert to Lower Case</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1"  onClick={capitalize} >Capitalize Word</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1"  onClick={handleCopy}>Copy Text</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-1"  onClick={clearText}>Clear Text</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1"  onClick={handleExtraSpace}>Clear Extra Space</button>
             </div>
             <div className="container my-4" style={{ color: props.mode === "dark" ? "white" : "#505050" }}>
                 <h2>Your Text summary</h2>
-                <p>Total words {text.split(" ").length-1} and {text.length} characters</p>
+                <p>Total words {text.split(" ").filter((element=>{return element.length !== 0})).length} and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes To Read</p>
             </div>
             <section className="container" style={{ color: props.mode === "dark" ? "white" : "#505050" }}>
                 <h2>Preview</h2>
-                <p>{text.length === 0 ? "Enter something to preview it here" : text}</p>
+                <p>{text.length === 0 ?"Enter something to preview it here" : text}</p>
             </section>
         </>
     )
